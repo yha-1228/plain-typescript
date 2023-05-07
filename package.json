@@ -1,6 +1,10 @@
 {
   "name": "plain-typescript",
+  "scripts": {
+    "format": "prettier --write ."
+  },
   "devDependencies": {
+    "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
