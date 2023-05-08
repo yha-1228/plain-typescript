@@ -1,3 +1,3 @@
 export default function entry() {
-  console.log('Hello');
+  // Enter your code here:
 }
