@@ -5,6 +5,7 @@
     "main": "npx ts-node scripts/main.ts"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.194",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
     "eslint": "^8.40.0",
