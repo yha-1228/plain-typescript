@@ -27,7 +27,7 @@
  */
 function groupBy<T extends object, K extends keyof T & string>(
   array: T[] | ReadonlyArray<T>,
-  key: K
+  key: K,
 ) {
   // @ts-expect-error T[K] is string type
   const arrayGroupedByKey: { [k in T[K]]?: T[] } = {};
