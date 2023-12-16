@@ -25,22 +25,21 @@
  * // }
  * ```
  */
-function groupBy<T extends object, K extends keyof T & string>(
-  array: T[] | ReadonlyArray<T>,
-  key: K,
+function groupBy<T extends Record<string, unknown>>(
+  array: ArrayLike<T>,
+  key: keyof T,
 ) {
-  // @ts-expect-error T[K] is string type
-  const arrayGroupedByKey: { [k in T[K]]?: T[] } = {};
+  const result: Partial<Record<string, T[]>> = {};
 
-  const values = [...new Set(array.map((item) => item[key]))];
+  const values = [...new Set(Array.from(array).map((item) => item[key]))];
 
-  values.forEach((value) => {
-    const filteredArrayByValue = array.filter((item) => item[key] === value);
-    arrayGroupedByKey[value] = filteredArrayByValue;
-  });
+  for (const value of values) {
+    result[String(value)] = Array.from(array).filter(
+      (item) => item[key] === value,
+    );
+  }
 
-  // @ts-expect-error T[K] is string type
-  return arrayGroupedByKey as { [k in T[K]]: T[] };
+  return result as Record<string, T[]>;
 }
 
 export { groupBy };
