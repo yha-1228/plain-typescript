@@ -1,18 +1,18 @@
-function groupBy<T extends Record<string, unknown>>(
-  array: ArrayLike<T>,
-  key: keyof T,
+function groupBy<T extends Record<string, unknown>, U extends string>(
+  array: T[],
+  callbackFn: (item: T) => U,
 ) {
-  const result: Partial<Record<string, T[]>> = {};
+  const result: Partial<Record<U, T[]>> = {};
 
-  const values = [...new Set(Array.from(array).map((item) => item[key]))];
+  const callbackReturns = [...new Set(array.map((item) => callbackFn(item)))];
 
-  for (const value of values) {
-    result[String(value)] = Array.from(array).filter(
-      (item) => item[key] === value,
+  for (const callbackReturn of callbackReturns) {
+    result[callbackReturn] = array.filter(
+      (item) => callbackFn(item) === callbackReturn,
     );
   }
 
-  return result as Record<string, T[]>;
+  return result as Record<U, T[]>;
 }
 
 export { groupBy };
