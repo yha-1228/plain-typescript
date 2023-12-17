@@ -32,7 +32,7 @@ function groupBy<T extends object, U extends string>(
 ) {
   const result: Partial<Record<U, T[]>> = {};
 
-  const callbackReturns = [...new Set(array.map((item) => callbackFn(item)))];
+  const callbackReturns = [...new Set(array.map(callbackFn))];
 
   for (const callbackReturn of callbackReturns) {
     result[callbackReturn] = array.filter(
