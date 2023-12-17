@@ -1,4 +1,4 @@
-function groupBy<T extends Record<string, unknown>, U extends string>(
+function groupBy<T extends object, U extends string>(
   array: T[],
   callbackFn: (item: T) => U,
 ) {
